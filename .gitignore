@@ -1,0 +1,7 @@
+# build artefact -- regenerate with scripts/Install-Skill.ps1 -Package
+*.skill
+
+# development-time only
+evals/
+__pycache__/
+*.pyc
