@@ -198,6 +198,11 @@ physical swap in the driver and only the app-aware exceptions in Keyboard Manage
 - **`references/gotchas.md`** — every known trap, with why it happens. Read before debugging.
 - **`references/keymap-reference.md`** — virtual-key name table, the Mac↔Windows shortcut
   mapping this skill ships, PowerToys module key names, and the `default.json` schema.
+- **`references/ahk-comparison.md`** — where PowerToys' ceiling is and AutoHotkey's begins, and
+  the **Apple-keyboard variant**: on Apple hardware the key to remap is `LWin`, not `LAlt`,
+  because Windows reports Cmd as the Win key. Read this when the request involves a custom
+  modifier key (`Fn + C`, `F13 + …`), layout-independent positional remapping, or an Apple
+  keyboard.
 
 ## Scripts
 

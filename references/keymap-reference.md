@@ -67,6 +67,19 @@ Names accepted by `Set-MacKeymap.ps1`, with virtual-key codes.
 
 `A`–`Z` are 65–90, `0`–`9` are 48–57, `F1`–`F24` are 112–135.
 
+Media and browser keys, mainly useful as **single-key targets** (`To = 'MediaPlayPause'`) for a
+Mac-style F-row layer:
+
+| Name | VK | Name | VK |
+|---|---|---|---|
+| `VolumeMute` | 173 | `BrowserBack` | 166 |
+| `VolumeDown` | 174 | `BrowserForward` | 167 |
+| `VolumeUp` | 175 | `BrowserRefresh` | 168 |
+| `MediaPrev` | 177 | `BrowserStop` | 169 |
+| `MediaNext` | 176 | `BrowserSearch` | 170 |
+| `MediaStop` | 178 | `BrowserFavorites` | 171 |
+| `MediaPlayPause` | 179 | `BrowserHome` | 172 |
+
 Only 162 / 164 / 160 / 91 appear as modifiers in the shipped map — see gotchas §6 for why the
 right-hand variants are avoided.
 

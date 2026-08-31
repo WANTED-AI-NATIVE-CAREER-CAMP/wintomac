@@ -108,6 +108,12 @@ $VK = @{
     'Backtick' = 192; 'Grave' = 192; 'Minus' = 189; 'Equals' = 187
     'LBracket' = 219; 'RBracket' = 221; 'Backslash' = 220
     'Semicolon' = 186; 'Quote' = 222; 'Comma' = 188; 'Period' = 190; 'Slash' = 191
+    # Media and browser keys. Useful as single-key targets for a Mac-style F-row layer --
+    # 'Alt+F8' -> 'MediaPlayPause'. See references/ahk-comparison.md section 5.
+    'VolumeMute' = 173; 'VolumeDown' = 174; 'VolumeUp' = 175
+    'MediaNext' = 176; 'MediaPrev' = 177; 'MediaStop' = 178; 'MediaPlayPause' = 179
+    'BrowserBack' = 166; 'BrowserForward' = 167; 'BrowserRefresh' = 168
+    'BrowserStop' = 169; 'BrowserSearch' = 170; 'BrowserFavorites' = 171; 'BrowserHome' = 172
 }
 foreach ($c in [char[]]'ABCDEFGHIJKLMNOPQRSTUVWXYZ') { $VK["$c"] = [int][char]$c }
 foreach ($n in 0..9)  { $VK["$n"]  = 48 + $n }
