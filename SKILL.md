@@ -139,6 +139,22 @@ Two things live in `settings.json` rather than the keymap:
   key names do not match the UI labels (Window Hopper is `AltWindowCycle`, Screen Ruler is
   `Measure Tool`); the script maps friendly names for you.
 
+### 3a. Windows Terminal의 Ctrl+V 전달
+
+CLI 이미지 붙여넣기가 실행되지 않을 때는 `references/gotchas.md` §12를 확인합니다.
+Terminal의 바인딩 변경이 요청된 경우 다음 명령으로 미리보기 후 적용합니다.
+
+```powershell
+.\Set-TerminalBindings.ps1 -DryRun
+.\Set-TerminalBindings.ps1
+.\Test-TerminalBindings.ps1
+```
+
+물리 왼쪽 Alt+V는 CLI로 전달하고, Terminal 텍스트 붙여넣기는 물리
+왼쪽 Alt+Shift+V에 유지합니다. 모든 Terminal 프로필에 적용되는 변경입니다.
+관리자 권한이나 PowerToys 키맵을 변경하지 않습니다. 설정 파일 검증만으로
+이미지 첨부 성공을 판단하지 않습니다.
+
 ### 4. Verify
 
 ```powershell
@@ -213,3 +229,6 @@ physical swap in the driver and only the app-aware exceptions in Keyboard Manage
 | `Set-MacKeymap.ps1` | the declarative keymap → `default.json` |
 | `Set-PTConfig.ps1` | `run_elevated` and module enable flags |
 | `Test-Setup.ps1` | verify the live state, token-level |
+
+추가 스크립트: `scripts/Set-TerminalBindings.ps1`은 Terminal 바인딩을 백업·수정하며,
+`scripts/Test-TerminalBindings.ps1`은 임시 설정으로 동작을 검증합니다.

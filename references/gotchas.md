@@ -293,3 +293,18 @@ safe mode, with zero hook overhead.
 the app-aware shortcut exceptions in Keyboard Manager. A useful side effect is that it removes
 the §3 ambiguity entirely — the driver hands PowerToys already-swapped keys, so shortcut rules
 are written in plain physical terms and there is no post-remap naming to reason about.
+
+
+## 12. Windows Terminal이 Ctrl+V를 먼저 처리합니다
+
+물리 왼쪽 Alt+V → PowerToys의 Ctrl+V 변환 → Terminal의 paste 순서로 처리되면
+CLI에는 Ctrl+V 키가 도착하지 않습니다. 텍스트 붙여넣기는 동작해도 CLI의 이미지
+첨부 기능이 실행되지 않을 수 있습니다. 관리자 권한 불일치와 구분해서 확인합니다.
+
+`Set-TerminalBindings.ps1`은 현대식 `keybindings`에서 Ctrl+V를 `unbound`로 지정하고,
+Ctrl+Shift+V에는 `Terminal.PasteFromClipboard`를 지정합니다. 기존 키 교환은
+유지합니다. PowerToys가 실제로 변환 중일 때 물리 왼쪽 Alt+V가 CLI로 전달됩니다.
+이미지 형식의 클립보드 데이터와 CLI의 이미지 지원은 별도 조건입니다.
+
+[Microsoft 문서](https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#unbind-keys-disable-keybindings)에서
+Terminal의 Ctrl+V 우선 처리와 unbound 동작을 설명합니다.

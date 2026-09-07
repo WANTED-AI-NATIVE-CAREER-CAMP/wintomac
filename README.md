@@ -82,3 +82,34 @@ references/keymap-reference.md  VK table, Mac↔Windows mapping, module keys, sc
 
 Windows 10/11, PowerShell 7 (the scripts avoid non-ASCII so they also survive Windows
 PowerShell 5.1), winget, and PowerToys 0.101 or newer for Window Hopper.
+
+
+## Windows Terminal의 CLI 이미지 붙여넣기
+
+PowerToys가 왼쪽 Ctrl/Alt를 교환한 상태에서는 물리 **왼쪽 Alt+V**가
+`Ctrl+V`로 전달됩니다. Windows Terminal에 `Ctrl+V` 붙여넣기가 등록되어 있으면
+Terminal이 먼저 처리하여 CLI가 해당 키를 받지 못합니다.
+
+```powershell
+.\scripts\Set-TerminalBindings.ps1 -DryRun
+.\scripts\Set-TerminalBindings.ps1
+.\scripts\Test-TerminalBindings.ps1
+```
+
+| 물리 키 | 변환된 키 | 적용 후 동작 |
+|---|---|---|
+| 왼쪽 Alt+V | Ctrl+V | CLI에 전달합니다. 이미지 처리는 해당 CLI가 담당합니다. |
+| 왼쪽 Alt+Shift+V | Ctrl+Shift+V | Terminal의 텍스트 붙여넣기를 실행합니다. |
+
+스크립트는 Stable 버전의 현재 사용자 설정을 기본 대상으로 사용합니다. 다른 설치는
+`-SettingsPath`로 지정합니다. 현대식 `keybindings` 배열을 대상으로 하며, 기존
+프로필과 나머지 바인딩은 보존합니다. Windows PowerShell 5.1에서는 주석 없는 JSON이
+필요합니다. 구형 인라인 `command` 바인딩은 자동 변환하지 않고 중단합니다.
+변경 전에는 설정 옆에 `settings.json.wintomac-*.bak` 백업을 만듭니다.
+복원할 때는 출력된 정확한 백업 경로를 원래 설정 경로로 복사합니다.
+
+이 변경은 해당 Terminal 설정을 사용하는 모든 프로필에 적용됩니다. 일반 셸에서도
+텍스트 붙여넣기에 물리 Alt+Shift+V를 사용합니다. PowerToys 재시작과 관리자 권한
+변경은 수행하지 않습니다. 설정 검증과 실제 키 입력·이미지 첨부 성공은 별도로 확인합니다.
+
+근거: [Microsoft의 키 바인딩 해제 문서](https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions#unbind-keys-disable-keybindings)입니다.
